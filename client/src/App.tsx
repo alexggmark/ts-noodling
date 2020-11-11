@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import {useThemeState} from './context/context'
 
 const Container = styled.div`
   color: ${(props: any) => props.theme.color};
@@ -11,11 +12,12 @@ const Button = styled.button`
   color: white;
 `
 
-const App = () => { 
+const App = () => {
+  const theme = useThemeState()
   return (
     <div className="App">
       <Container>Test</Container>
-      <Button>Click</Button>
+      <Button onClick={() => theme.dispatch({ type: 'dark' })}>Click</Button>
     </div>
   );
 }
