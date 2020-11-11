@@ -1,6 +1,6 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import styled from 'styled-components'
-import {useThemeState} from './context/context'
+import {MyContext} from './context/context'
 
 const Container = styled.div`
   color: ${(props: any) => props.theme.color};
@@ -12,8 +12,8 @@ const Button = styled.button`
   color: white;
 `
 
-const App = () => {
-  const theme = useThemeState()
+const App: React.FC = () => {
+  const theme = useContext(MyContext)
   return (
     <div className="App">
       <Container>Test</Container>

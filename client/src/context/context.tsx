@@ -1,4 +1,4 @@
-import React, {useReducer, useContext, createContext, useState} from 'react'
+import React, {useReducer, useContext, createContext} from 'react'
 import {ThemeProvider} from 'styled-components'
 
 export type ThemeSettings = {
@@ -35,18 +35,10 @@ const reducer = (state: ThemeSettings, action: any) => {
   }
 }
 
-export function useThemeState() {
-  const [state, dispatch] = useReducer(reducer, MainTheme.light)
-
-  return {
-    state,
-    dispatch
-  }
-}
-
-const [state, tempDispatch] = useReducer(reducer, MainTheme.light)
-
-export const MyContext = createContext<ThemeObject>({ state: MainTheme.dark, dispatch: tempDispatch })
+export const MyContext = createContext<ThemeObject>({
+  state: MainTheme.light,
+  dispatch: () => null
+})
 
 export const ContextProvider = (props: any) => {
   const [state, dispatch] = useReducer(reducer, MainTheme.light)
@@ -58,7 +50,7 @@ export const MyThemeProvider = (props: any) => {
   const theme = useContext(MyContext)
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme.state}>
       {props.children}
     </ThemeProvider>
   )
