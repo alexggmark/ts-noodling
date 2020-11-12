@@ -1,6 +1,6 @@
 import React, {useContext, useState} from 'react'
 import styled from 'styled-components'
-import {MyContext} from './context/context'
+import {MyContext} from '../context/context'
 
 const Container = styled.div`
   color: ${(props: any) => props.theme.color};
